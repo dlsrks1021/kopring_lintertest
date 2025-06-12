@@ -22,12 +22,12 @@ jobs:
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Set your fix mode variables to true
-          FIX_KOTLIN: true
+          CONFIG_FILE: .super-linter.yml
+          KOTLIN_RULES_PATH: .github/linters/.ktlint.yml
       - name: Commit and push linting fixes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          branch: ${{ github.event.pull_request.head.ref || github.head_ref || github.ref }}
+          branch: ${{ github.ref_name }}
           commit_message: "chore: fix linting issues"
           commit_user_name: super-linter
           commit_user_email: super-linter@super-linter.dev
