@@ -1,0 +1,3 @@
+[*.kt]
+disabled_rules=filename,no-wildcard-imports
+
