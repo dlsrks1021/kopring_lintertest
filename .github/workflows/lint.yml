@@ -22,8 +22,8 @@ jobs:
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CONFIG_FILE: .super-linter.yml
-          KOTLIN_RULES_PATH: .github/linters/.ktlint.yml
+          FIX_KOTLIN: true
+          DISABLE_ERRORS: true
       - name: Commit and push linting fixes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
