@@ -6,30 +6,27 @@ import io.kckim.kopring.dto.MemberDescription
 import io.kckim.kopring.dto.MemberUpdateDescription
 import io.kckim.kopring.dto.MemberView
 import io.kckim.kopring.exception.MemberNotFoundException
-
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 @Transactional(readOnly = true)
 class MemberService(
-    private val repository: MemberRepository
+    private val repository: MemberRepository,
 ) {
-
     @Transactional
     fun save(desc: MemberDescription): MemberDescription {
-        val member = Member(
-            name = desc.name,
-            email = desc.email,
-            role = desc.role,
-        )
+        val member =
+            Member(
+                name = desc.name,
+                email = desc.email,
+                role = desc.role,
+            )
         repository.save(member)
         return desc
     }
 
-    fun findByEmail(email : String): Member {
-        return repository.findByEmail(email) ?: throw MemberNotFoundException()
-    }
+    fun findByEmail(email: String): Member = repository.findByEmail(email) ?: throw MemberNotFoundException()
 
     fun getDescByEmail(email: String): MemberDescription {
         val find = findByEmail(email)
@@ -41,7 +38,10 @@ class MemberService(
     }
 
     @Transactional
-    fun update(email: String, updateDesc: MemberUpdateDescription): MemberUpdateDescription {
+    fun update(
+        email: String,
+        updateDesc: MemberUpdateDescription,
+    ): MemberUpdateDescription {
         val find = findByEmail(email)
         find.update(updateDesc)
         return MemberUpdateDescription(
@@ -56,7 +56,5 @@ class MemberService(
         repository.delete(find)
     }
 
-    fun getAllDescView(): List<MemberView> {
-        return repository.findAllMemberView()
-    }
+    fun getAllDescView(): List<MemberView> = repository.findAllMemberView()
 }

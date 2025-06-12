@@ -8,12 +8,14 @@ import org.springframework.data.jpa.repository.Query
 interface MemberRepository : JpaRepository<Member, Long> {
     fun findByEmail(email: String): Member?
 
-    @Query("""
+    @Query(
+        """
         SELECT
           m.name as name,
           m.email as email,
           m.role as role
         FROM Member m
-    """)
-    fun findAllMemberView() : List<MemberView>
+    """,
+    )
+    fun findAllMemberView(): List<MemberView>
 }

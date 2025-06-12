@@ -8,14 +8,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 
 @RestControllerAdvice
 class MemberExceptionHandler {
-
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(MemberNotFoundException::class)
-    fun memberNotFoundException(
-        e: MemberNotFoundException
-    ): GenericResponse<Void> {
-        return GenericResponse(
-            message = e.message!!
+    fun memberNotFoundException(e: MemberNotFoundException): GenericResponse<Void> =
+        GenericResponse(
+            message = e.message!!,
         )
-    }
 }

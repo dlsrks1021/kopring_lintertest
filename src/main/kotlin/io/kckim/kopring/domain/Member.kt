@@ -6,18 +6,15 @@ import io.kckim.kopring.global.TimeStamp
 import jakarta.persistence.*
 
 @Entity
-class Member (
-
+class Member(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     var name: String,
     var email: String,
-
     @Enumerated(EnumType.STRING)
     var role: Role,
 ) : TimeStamp() {
-
     fun update(desc: MemberUpdateDescription) {
         this.name = desc.name
         this.role = desc.role

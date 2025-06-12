@@ -12,6 +12,7 @@ import java.time.LocalDateTime
 abstract class TimeStamp {
     @CreatedDate
     lateinit var createdAt: LocalDateTime
+
     @LastModifiedDate
     lateinit var updatedAt: LocalDateTime
 }

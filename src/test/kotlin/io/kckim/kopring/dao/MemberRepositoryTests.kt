@@ -13,13 +13,12 @@ import java.time.LocalDateTime
 
 private val log = KotlinLogging.logger {}
 
-//@DataJpaTest
+// @DataJpaTest
 @SpringBootTest
 @DisplayName("Slice tests")
 class MemberRepositoryTests(
-    @Autowired var repository: MemberRepository
+    @Autowired var repository: MemberRepository,
 ) {
-
     @Test
     fun `주입 테스트`() {
         log.info { repository }
@@ -61,5 +60,4 @@ class MemberRepositoryTests(
             assertThat(memberView.name).isEqualTo(members[index].name)
         }
     }
-
 }
